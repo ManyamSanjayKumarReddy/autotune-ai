@@ -1,0 +1,12 @@
+[project]
+name = "graph"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["aerich>=0.8.1", "asyncpg>=0.31.0", "beautifulsoup4>=4.14.3", "chromadb>=1.5.1", "ddgs>=9.10.0", "fastapi>=0.129.2", "langchain-community>=0.4.1", "langchain-google-genai>=4.2.1", "langchain[openai]>=1.2.10", "pysqlite3-binary>=0.5.4.post2", "python-dotenv>=1.2.1", "rich>=14.3.3", "sentence-transformers>=5.2.3", "tomlkit>=0.14.0", "tortoise-orm>=1.1.5", "uvicorn>=0.41.0"]
+
+[tool.aerich]
+tortoise_orm = "db.config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
