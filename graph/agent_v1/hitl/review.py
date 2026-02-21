@@ -22,7 +22,7 @@ def hitl_review_node(state: AutoTuneState) -> dict:
 
     # interrupt() suspends graph here. The value is surfaced to the caller.
     # In CLI mode, app.py reads this and prompts the user.
-    # In REST mode, the frontend reads this via GET /pipeline/{batch_id}/review.
+    # In REST mode, the frontend reads this via GET /rag_pipeline/{batch_id}/review.
     decision: dict = interrupt({
         "action": "review_samples",
         "batch_id": state["batch_id"],

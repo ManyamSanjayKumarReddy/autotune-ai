@@ -716,7 +716,7 @@ def init_environment():
 # ── Routing Functions ──────────────────────────────────────────────────────
 
 def route_after_analyzer(state: AutoTuneState) -> str:
-    """Skip the pipeline if Agent 1 says it's not a real issue."""
+    """Skip the rag_pipeline if Agent 1 says it's not a real issue."""
     if state.get("skip"):
         return "skip"
     return "link_fetcher"
@@ -795,12 +795,12 @@ def run_pipeline(
     batch_id: str = "batch-001"
 ) -> AutoTuneState:
     """
-    Run the full AutoTune pipeline.
+    Run the full AutoTune rag_pipeline.
 
     Args:
         conversations: List of disliked conversation dicts.
                        Each item: list of {role, content} messages.
-        batch_id: Unique identifier for this pipeline run.
+        batch_id: Unique identifier for this rag_pipeline run.
 
     Returns:
         Final graph state (AutoTuneState dict).
@@ -885,7 +885,7 @@ def export_to_csv(samples: list[DataSample], batch_id: str) -> str:
 
 def print_metrics(state: AutoTuneState, csv_path: str) -> None:
     """
-    Print a rich summary table of pipeline metrics.
+    Print a rich summary table of rag_pipeline metrics.
     """
     validation = state.get("validation_report")
     samples = state.get("final_samples") or []
@@ -931,7 +931,7 @@ def print_metrics(state: AutoTuneState, csv_path: str) -> None:
 
 ```python
 """
-CLI entry point for the AutoTune pipeline.
+CLI entry point for the AutoTune rag_pipeline.
 Usage: python -m agent_v1.graph.app
 """
 

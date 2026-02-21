@@ -1,6 +1,6 @@
 
 """
-AutoTune LangGraph — graph assembly and pipeline runner.
+AutoTune LangGraph — graph assembly and rag_pipeline runner.
 
 Graph flow:
     START → analyzer
@@ -33,7 +33,7 @@ def init_environment() -> None:
 # ── Routing functions ──────────────────────────────────────────────────────
 
 def route_after_analyzer(state: AutoTuneState) -> str:
-    """Skip rest of pipeline if Agent 1 finds no real knowledge gap."""
+    """Skip rest of rag_pipeline if Agent 1 finds no real knowledge gap."""
     return "skip" if state.get("skip") else "link_fetcher"
 
 
@@ -87,7 +87,7 @@ def run_pipeline(
     batch_id: str = "batch-001"
 ) -> dict:
     """
-    Run the full AutoTune pipeline.
+    Run the full AutoTune rag_pipeline.
 
     Args:
         conversations_text: Pre-formatted conversation string from backend.
@@ -118,7 +118,7 @@ def run_pipeline(
         "skip": False,
     }
 
-    # Phase 1: run until first interrupt (or END if pipeline skips)
+    # Phase 1: run until first interrupt (or END if rag_pipeline skips)
     result = graph.invoke(initial_state, config=config)
 
     # Phase 2: handle interrupt loop — one pause per sub-batch of 3 questions

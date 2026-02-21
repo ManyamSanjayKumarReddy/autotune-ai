@@ -35,7 +35,7 @@ def export_to_csv(samples: list[dict], batch_id: str) -> str:
 
 
 def print_metrics(state: dict, csv_path: str) -> None:
-    """Print a rich summary of the pipeline run."""
+    """Print a rich summary of the rag_pipeline run."""
     validation = state.get("validation_report") or {}
     final = state.get("final_samples") or []
     approved = state.get("hitl_approved_samples") or []
