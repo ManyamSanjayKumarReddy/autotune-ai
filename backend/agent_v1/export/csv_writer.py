@@ -35,11 +35,11 @@ def export_to_csv(samples: list[dict], batch_id: str) -> str:
 
 
 def print_metrics(state: dict, csv_path: str) -> None:
+
     """Print a rich summary of the rag_pipeline run."""
+
     validation = state.get("validation_report") or {}
     final = state.get("final_samples") or []
-    approved = state.get("hitl_approved_samples") or []
-    rejected = state.get("hitl_rejected_ids") or []
     sample_batch = state.get("sample_batch") or {}
     topic_analysis = state.get("topic_analysis") or {}
     link_batch = state.get("link_batch") or {}
@@ -52,13 +52,11 @@ def print_metrics(state: dict, csv_path: str) -> None:
     table.add_column("Value", style="bold white", width=20)
 
     table.add_row("Batch ID", state.get("batch_id", "—"))
-    table.add_row("Conversations processed", str(len(state.get("conversations", []))))
+    table.add_row("Conversations processed", "1 (raw text input)")
     table.add_row("Topics identified", str(len(topic_analysis.get("topics", []))))
     table.add_row("Links fetched", str(len(link_batch.get("links", []))))
     table.add_row("Questions generated", str(len(question_set.get("questions", []))))
     table.add_row("Samples generated", str(len(sample_batch.get("samples", []))))
-    table.add_row("HITL approved", str(len(approved)))
-    table.add_row("HITL rejected", str(len(rejected)))
     table.add_row("Validator passed", str(validation.get("passed", "—")))
     table.add_row("Validator failed", str(validation.get("failed", "—")))
     table.add_row("Final samples in CSV", str(len(final)))

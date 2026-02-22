@@ -69,9 +69,6 @@ class AutoTuneState(TypedDict):
     question_set: Optional[dict]
     sample_batch: Optional[dict]
 
-    hitl_approved_samples: Optional[List[dict]]
-    hitl_rejected_ids: Optional[List[str]]
-
     validation_report: Optional[dict]
     final_samples: Optional[List[dict]]
 
