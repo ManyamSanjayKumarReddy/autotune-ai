@@ -1,0 +1,10 @@
+[
+  {
+    "user_query": "what is the latest version of langchain?",
+    "system_response": "To find the latest version of LangChain, you should check the official GitHub repository or PyPI page. You can also run `pip show langchain` or `pip install langchain --upgrade` in your terminal to see or update to the latest installed version. For the most accurate and up-to-date version information, always refer to the official LangChain documentation or PyPI listing."
+  },
+  {
+    "user_query": "what is mcp?",
+    "system_response": "MCP commonly stands for Model Context Protocol. It is an open protocol designed to standardize how AI models connect with external tools, data sources, and applications. MCP enables structured communication between models and external systems, allowing secure tool usage, context sharing, and capability discovery. It is commonly discussed in the AI ecosystem for enabling tool-integrated and agent-based architectures."
+  }
+]
