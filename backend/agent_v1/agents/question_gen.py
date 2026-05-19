@@ -6,13 +6,18 @@ from langchain.chat_models import init_chat_model
 from agent_v1.graph.states import AutoTuneState, QuestionSet
 from agent_v1.prompts.prompts import question_gen_prompt
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+GEMINI_MODEL = os.getenv("GEMINI_MODEL")
 
 def question_gen_agent(state: AutoTuneState) -> dict:
     """
     Agent 3: Scraped content + topics → 10 training questions.
     """
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3, max_output_tokens=4096)
+    llm = ChatGoogleGenerativeAI(model=GEMINI_MODEL, temperature=0.3, max_output_tokens=4096)
 
 
     topics: list[str] = state["topic_analysis"]["topics"]

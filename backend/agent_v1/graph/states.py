@@ -11,6 +11,7 @@ class TopicAnalysis(BaseModel):
     )
     reasoning: str = Field(description="Why this is or isn't a real issue (1-2 sentences)")
     topics: List[str] = Field(
+        default_factory=list,
         description="3-5 training topics. Empty list if not a real issue.",
         max_length=5
     )
@@ -34,9 +35,9 @@ class DataSample(BaseModel):
     id: str = Field(default="")
     question: str
     answer: str
-    confidence_score: float = Field(ge=0.0, le=1.0)
-    topic: str
-    source_url: str
+    confidence_score: float = Field(default=0.7, ge=0.0, le=1.0)  # default so LLM can omit it
+    topic: str = Field(default="")        # backfilled in sampler if missing
+    source_url: str = Field(default="")   # backfilled in sampler if missing
 
 
 class SampleBatch(BaseModel):
@@ -52,15 +53,15 @@ class ValidationResult(BaseModel):
 
 class ValidationReport(BaseModel):
     results: List[ValidationResult]
-    total: int
-    passed: int
-    failed: int
+    total: int = Field(default=0)    # backfilled in validator if missing
+    passed: int = Field(default=0)   # backfilled in validator if missing
+    failed: int = Field(default=0)   # backfilled in validator if missing
 
 
 # ── Graph State — TypedDict ONLY (LangGraph v1 requirement) ───────────────
 
 class AutoTuneState(TypedDict):
-    conversations_text: str          # pre-formatted by backend — plain string
+    conversations_text: str
     batch_id: str
 
     topic_analysis: Optional[dict]

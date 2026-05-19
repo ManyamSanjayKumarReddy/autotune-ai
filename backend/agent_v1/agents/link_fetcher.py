@@ -10,13 +10,18 @@ from agent_v1.graph.states import AutoTuneState, LinkBatch
 from agent_v1.tools.web_search import search_web, scrape_url
 from agent_v1.prompts.prompts import link_fetcher_prompt
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+GEMINI_MODEL = os.getenv("GEMINI_MODEL")
 
 def link_fetcher_agent(state: AutoTuneState) -> dict:
     """
     Agent 2: Topics → DuckDuckGo → LLM curates best links → scrape content.
     """
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3, max_output_tokens=4096)
+    llm = ChatGoogleGenerativeAI(model=GEMINI_MODEL, temperature=0.3, max_output_tokens=4096)
 
 
     topics: list[str] = state["topic_analysis"]["topics"]
